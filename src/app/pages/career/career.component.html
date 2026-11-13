@@ -1,0 +1,39 @@
+<app-page-hero
+  [index]="site.pages.career.index"
+  [kicker]="site.pages.career.kicker"
+  [title]="site.pages.career.title"
+  [deck]="site.pages.career.deck"
+/>
+
+<section class="stats" aria-label="Hechos">
+  <div class="container stats-grid">
+    @for (stat of site.stats; track stat.label) {
+      <article class="stat">
+        <strong>{{ stat.value }}</strong>
+        <span>{{ stat.label }}</span>
+        <small>{{ stat.detail }}</small>
+      </article>
+    }
+  </div>
+</section>
+
+<section class="prose-wrap">
+  <div class="container">
+    <ol class="timeline">
+      @for (item of site.timeline; track item.id) {
+        <li>
+          <p class="timeline-period">{{ item.period }}</p>
+          <div>
+            <p class="kicker">{{ item.kicker }}</p>
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.body }}</p>
+          </div>
+        </li>
+      }
+    </ol>
+    <div class="actions">
+      <a class="btn btn-dark" routerLink="/prensa">Fuentes en prensa</a>
+      <a class="btn btn-ink" routerLink="/historia">Leer la historia</a>
+    </div>
+  </div>
+</section>

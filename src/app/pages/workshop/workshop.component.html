@@ -1,0 +1,49 @@
+<app-page-hero
+  [index]="site.pages.workshop.index"
+  [kicker]="site.pages.workshop.kicker"
+  [title]="site.pages.workshop.title"
+  [deck]="site.pages.workshop.deck"
+/>
+
+<section class="prose-wrap sand">
+  <div class="container">
+    <p class="lead">
+      Ocho años en Honda, hoy en KTM, dos Dakar ganados desde el box. Germán sabe lo que necesita un mecánico
+      porque lo vive cada etapa. Ahora lo lleva a tu taller.
+    </p>
+
+    <div class="principles">
+      @for (principle of site.principles; track principle.id) {
+        <article class="principle">
+          <h3>{{ principle.title }}</h3>
+          <p>{{ principle.body }}</p>
+        </article>
+      }
+    </div>
+
+    <div class="launch">
+      <p class="kicker">En paralelo a KTM · Lanzamiento</p>
+      @if (site.brandName) {
+        <h2>{{ site.brandName }}</h2>
+        <p>Equipamiento de taller pensado desde el box de competición.</p>
+        @if (site.brandUrl) {
+          <a class="btn btn-dark" [href]="site.brandUrl" target="_blank" rel="noopener noreferrer">Ver {{ site.brandName }}</a>
+        }
+      } @else {
+        <h2>Primeras unidades, muy pronto.</h2>
+        <p>
+          Los primeros modelos de cajas de herramientas están en desarrollo. Si tenés un taller, un equipo o
+          simplemente querés la caja que usaría un mecánico del Dakar, escribile y te avisa del lanzamiento.
+        </p>
+        @if (site.instagramUrl) {
+          <a class="btn btn-dark" [href]="site.instagramUrl" target="_blank" rel="noopener noreferrer">Quiero enterarme</a>
+        }
+      }
+    </div>
+
+    <div class="actions">
+      <a class="btn btn-ink" routerLink="/trayectoria">Ver la trayectoria</a>
+      <a class="btn btn-ink" routerLink="/contacto">Contacto</a>
+    </div>
+  </div>
+</section>

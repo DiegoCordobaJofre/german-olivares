@@ -1,0 +1,30 @@
+<app-page-hero
+  [index]="site.pages.press.index"
+  [kicker]="site.pages.press.kicker"
+  [title]="site.pages.press.title"
+  [deck]="site.pages.press.deck"
+/>
+
+<section class="prose-wrap">
+  <div class="container">
+    <div class="press-list">
+      @for (item of site.press; track item.id) {
+        <a class="press-card" [href]="item.url" target="_blank" rel="noopener noreferrer">
+          <p class="kicker">{{ item.outlet }}<span>{{ item.date }}</span></p>
+          <div>
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.excerpt }}</p>
+          </div>
+        </a>
+      }
+    </div>
+
+    <div class="boilerplate">
+      <p class="kicker">Para citarlo</p>
+      <p>{{ site.boilerplate }}</p>
+      <button type="button" class="btn btn-dark" (click)="copyBoilerplate()">
+        {{ copied() ? 'Copiado' : 'Copiar presentación' }}
+      </button>
+    </div>
+  </div>
+</section>

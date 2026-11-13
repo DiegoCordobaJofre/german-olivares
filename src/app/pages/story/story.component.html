@@ -1,0 +1,45 @@
+<app-page-hero
+  [index]="site.pages.story.index"
+  [kicker]="site.pages.story.kicker"
+  [title]="site.pages.story.title"
+  [deck]="site.pages.story.deck"
+/>
+
+<article class="prose-wrap">
+  <div class="container">
+    <div class="identity">
+      <p class="lead">
+        El nombre público es Germán Olivares. El nombre completo es Rafael Germán Olivares.
+        Con acento o sin acento, es la misma persona.
+      </p>
+      <p class="lead">
+        Durante años la carrera estuvo en las notas de otros: el piloto, el equipo, el resultado.
+        Esta página existe para que el nombre tenga un lugar propio.
+      </p>
+    </div>
+
+    <div class="prose">
+      @for (chapter of site.chapters; track chapter.id) {
+        <section [id]="chapter.id">
+          <h2>{{ chapter.index }} — {{ chapter.title }}</h2>
+          @for (paragraph of chapter.body; track paragraph) {
+            <p>{{ paragraph }}</p>
+          }
+        </section>
+      }
+    </div>
+
+    @if (site.gallery.length) {
+      <ul class="gallery">
+        @for (image of site.gallery; track image.src) {
+          <li><img [src]="image.src" [alt]="image.alt" /></li>
+        }
+      </ul>
+    }
+
+    <div class="actions">
+      <a class="btn btn-dark" routerLink="/trayectoria">Ver la trayectoria</a>
+      <a class="btn btn-ink" routerLink="/taller">El taller</a>
+    </div>
+  </div>
+</article>

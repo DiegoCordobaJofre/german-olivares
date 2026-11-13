@@ -1,0 +1,28 @@
+<app-page-hero
+  [index]="site.pages.contact.index"
+  [kicker]="site.pages.contact.kicker"
+  [title]="site.pages.contact.title"
+  [deck]="site.pages.contact.deck"
+/>
+
+<section class="prose-wrap">
+  <div class="container">
+    <p class="lead">Si estás armando una nota, el archivo de prensa ya tiene las fuentes. Para el resto, este es el canal.</p>
+
+    <div class="contact-block">
+      @if (site.instagramUrl) {
+        <a [href]="site.instagramUrl" target="_blank" rel="noopener noreferrer">{{ site.instagramHandle }}</a>
+      }
+      @if (site.email) {
+        <a [href]="'mailto:' + site.email">{{ site.email }}</a>
+      }
+      @if (site.linkedinUrl) {
+        <a [href]="site.linkedinUrl" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      }
+    </div>
+
+    <div class="actions">
+      <a class="btn btn-dark" routerLink="/prensa">Ver prensa</a>
+    </div>
+  </div>
+</section>

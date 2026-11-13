@@ -1,0 +1,145 @@
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <p class="kicker">{{ site.heroKicker }}</p>
+      <h1 class="display">
+        <span>Germán</span>
+        <span>Olivares</span>
+      </h1>
+      <div class="speed-bars" aria-hidden="true"></div>
+      <p class="hero-italic">{{ site.heroItalic }}</p>
+      <p class="deck">{{ site.heroDeck }}</p>
+      <div class="actions">
+        <a class="btn btn-fill" routerLink="/trayectoria">Ver la trayectoria</a>
+        <a class="btn btn-line" routerLink="/taller">Nuevo: Taller</a>
+      </div>
+    </div>
+
+    <aside class="dossier" aria-label="Ficha de Germán Olivares">
+      <div class="dossier-top">
+        <span>Ficha</span>
+        <span>01</span>
+      </div>
+      <div class="portrait">
+        @if (site.portrait) {
+          <img [src]="site.portrait" alt="Retrato de Germán Olivares" />
+        } @else {
+          <span class="monogram" aria-hidden="true">GO</span>
+        }
+      </div>
+      <dl>
+        @for (row of site.ficha; track row.label) {
+          <div class="ficha-row">
+            <dt>{{ row.label }}</dt>
+            <dd>{{ row.value }}</dd>
+          </div>
+        }
+      </dl>
+    </aside>
+  </div>
+</section>
+
+<section class="stats" aria-label="Hechos">
+  <div class="container stats-grid">
+    @for (stat of site.stats; track stat.label) {
+      <article class="stat">
+        <strong>{{ stat.value }}</strong>
+        <span>{{ stat.label }}</span>
+        <small>{{ stat.detail }}</small>
+      </article>
+    }
+  </div>
+</section>
+
+<section class="section paper">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <p class="kicker">01 — Historia</p>
+        <h2>Una vida en el box.</h2>
+      </div>
+      <a class="link-quiet" routerLink="/historia">Leer el relato</a>
+    </div>
+    <div class="chapters">
+      @for (chapter of site.chapters; track chapter.id) {
+        <a class="chapter" [routerLink]="['/historia']" [fragment]="chapter.id">
+          <span class="index">{{ chapter.index }}</span>
+          <h3>{{ chapter.title }}</h3>
+          <p>{{ chapter.summary }}</p>
+        </a>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section night">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <p class="kicker">02 — Trayectoria</p>
+        <h2>Escrita en boxes, no en un currículum.</h2>
+      </div>
+      <a class="link-quiet" routerLink="/trayectoria">Ver la línea completa</a>
+    </div>
+    <ol class="timeline">
+      @for (item of site.timeline; track item.id) {
+        <li>
+          <p class="timeline-period">{{ item.period }}</p>
+          <div>
+            <p class="kicker">{{ item.kicker }}</p>
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.body }}</p>
+          </div>
+        </li>
+      }
+    </ol>
+  </div>
+</section>
+
+<section class="section paper">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <p class="kicker">03 — Prensa</p>
+        <h2>La historia ya existía. Había que ordenarla.</h2>
+      </div>
+      <a class="link-quiet" routerLink="/prensa">Archivo de notas</a>
+    </div>
+    <div class="press-list">
+      @for (item of site.press; track item.id) {
+        <a class="press-card" [href]="item.url" target="_blank" rel="noopener noreferrer">
+          <p class="kicker">{{ item.outlet }}<span>{{ item.date }}</span></p>
+          <div>
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.excerpt }}</p>
+          </div>
+        </a>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="close">
+  <div class="container">
+    <p class="kicker">04 — Nuevo proyecto</p>
+    <h2>El taller de un mecánico del Dakar.</h2>
+    <p>
+      Mientras sigue en el box oficial de KTM, Germán lanza su propia línea de cajas de herramientas y
+      equipamiento de taller. Diseñadas con lo que exige una etapa del Dakar.
+    </p>
+    <a class="btn btn-line" routerLink="/taller">Conocer el proyecto</a>
+  </div>
+</section>
+
+@if (site.gallery.length) {
+  <section class="section paper" aria-label="Fotos">
+    <div class="container">
+      <p class="kicker">Archivo visual</p>
+      <ul class="gallery">
+        @for (image of site.gallery; track image.src) {
+          <li><img [src]="image.src" [alt]="image.alt" /></li>
+        }
+      </ul>
+    </div>
+  </section>
+}

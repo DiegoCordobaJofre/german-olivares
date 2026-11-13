@@ -1,0 +1,68 @@
+<a class="skip" href="#contenido">Saltar al contenido</a>
+
+<header class="site-header">
+  <a routerLink="/" class="logo" (click)="closeMenu()">
+    <span class="logo-mark" aria-hidden="true">GO</span>
+    <span class="logo-name">{{ site.publicName }}</span>
+  </a>
+
+  <button
+    type="button"
+    class="menu-toggle"
+    [attr.aria-expanded]="menuOpen()"
+    aria-controls="nav-principal"
+    (click)="toggleMenu()"
+  >
+    <span class="sr-only">{{ menuOpen() ? 'Cerrar menú' : 'Abrir menú' }}</span>
+    <span class="menu-icon" [class.is-open]="menuOpen()"></span>
+  </button>
+
+  <nav id="nav-principal" class="nav" [class.is-open]="menuOpen()" aria-label="Principal">
+    @for (item of site.nav; track item.path) {
+      <a [routerLink]="item.path" routerLinkActive="is-active">{{ item.label }}</a>
+    }
+  </nav>
+</header>
+
+<main id="contenido">
+  <router-outlet />
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <strong>{{ site.publicName }}</strong>
+      <p>{{ site.fullName }}<br />{{ site.role }}</p>
+    </div>
+    <nav aria-label="Pie">
+      @for (item of site.nav; track item.path) {
+        <a [routerLink]="item.path">{{ item.label }}</a>
+      }
+    </nav>
+    <div>
+      @if (site.instagramUrl) {
+        <a [href]="site.instagramUrl" target="_blank" rel="noopener noreferrer">{{ site.instagramHandle }}</a>
+      }
+      @if (site.email) {
+        <p><a [href]="'mailto:' + site.email">{{ site.email }}</a></p>
+      }
+      @if (site.linkedinUrl) {
+        <p><a [href]="site.linkedinUrl" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
+      }
+    </div>
+  </div>
+  <div class="container">
+    <p class="legal">
+      © {{ year }} {{ site.publicName }}. Honda, KTM, Dakar y los nombres de los pilotos pertenecen a sus titulares.
+      Se usan para describir la trayectoria.
+    </p>
+    <p class="credit">
+      Design &amp; development by
+      @if (site.credit.url) {
+        <a [href]="site.credit.url" target="_blank" rel="noopener">{{ site.credit.name }}</a>
+      } @else {
+        <span>{{ site.credit.name }}</span>
+      }
+    </p>
+  </div>
+</footer>
